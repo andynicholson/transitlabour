@@ -1,10 +1,11 @@
-{% blocker header %}
+{% block header %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Transit Labour : Blogs</title>
+<title>Transit Labour :  {%block title %}{% endblock %}</title>
+
 <link rel="stylesheet" href="/custom/css/reset.css" />
 <link rel="stylesheet" href="/custom/css/text.css" />
 <link rel="stylesheet" href="/custom/css/960.css" />
@@ -50,11 +51,12 @@ the blog post title is.).
 
 <div class="container_12 blogs">
 
+	{% include 'transitlabourapp/menus.html' %}
+
 <div class="grid_12 alpha content">
     
 	<div class="grid_9 alpha left">
 
-	{% block menus %} {% enblock %}
 <!--
 Each language should only be displayed if there are blog posts in that language.
 -->
@@ -63,8 +65,10 @@ Each language should only be displayed if there are blog posts in that language.
 		-->
     
 	    <div class="grid_9 alpha omega page-title">
-	    <h1 class="title">{{object.header}}</h1><br />
+	    <h1 class="title">{% block title_minor %}{% endblock%}</h1><br />
 	    </div>
+
+
 
 	    <div class="grid_9 alpha omega blog">
 
@@ -72,9 +76,17 @@ Each language should only be displayed if there are blog posts in that language.
 The five latest blog posts go here.
 -->
 
-	    		<div class="grid_9 alpha omega teaser">
-				<span class="pad">{{object.teaser_text|safe}}</span>
-				</div>
+	    		<div class="grid_9 alpha omega">
+				<span class="pad">
+				
+	    				{% block content %} {% endblock %}
+
+				</span>
+			</div>
+
+			<div class="grid_9 alpha omega">
+					<span>&nbsp;</span>
+			</div>
                 
 		</div>
 		<!-- end .grid_9 blog-->
@@ -119,7 +131,7 @@ the same as this page, but with the page title being "Blogs: Bloggers Name
    {% for blogger in bloggers %} 
 <a href="{{blogger.url}}">
 <div class="grid_3 alpha blog">
-<span class="name">{{blogger.name}}</span>
+<span class="name">{{blogger.first_name}} {{blogger.last_name}}</span>
 </div>
 </a>
 {% endfor %}
@@ -146,6 +158,9 @@ The text for the license block will need to be editable
     <div class="grid_5 alpha license">
 <h2>License</h2>
     Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 3.0 License
+	<br>
+    {% if user.is_authenticated %} <a href="/admin/transitlabourapp/page/{{object.id}}">Edit this page</a> | <a href="/admin/transitlabourapp/page/add">Publish a Page</a> {% endif %}
+
     </div>
 
 <!--
@@ -204,38 +219,4 @@ Phone: +61 (0)2 9873 86732
  {% endblock %}
 
 
- {% block menus %}
- 
- <div class="grid_12 alpha omega user_bar">
-	<div class="grid_7 alpha ">&nbsp;</div>
-	<!-- <div class="grid_2 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
-	<div class="grid_3 omega signup"><a href="#">Login</a> / <a href="#">Signup</a></div>
-</div>
-<!-- end .grid_12 user_bar -->
-<div class="clear"></div>
 
-
-<div class="grid_12 alpha omega header">
-	<div class="grid_9 alpha logo"><a href="#"><img src="/custom/img/transitlabour-logo.gif" alt="Transit Labour" width="390" height="274"></a></div>
-    <div class="grid_3 omega cities">
-    	<a href="#"><div class="shanghai">Shanghai</div></a>
-		<a href="#"><div class="kolkata">Kolkata</div></a>
-		<a href="#"><div class="sydney">Sydney</div></a>    
-	</div>
-    <!-- end .grid_3 cities -->
-</div>
-<!-- end .grid_12 header -->
-<div class="clear"></div>
-
-<!--
-Each menu item should only appear if there is actual content at the place being linked to.
--->
-
-<div class="grid_12 alpha omega menu_block">
-	<div class="menu">
-		<a href="/home">Home</a> / <a href="/about">About</a> / <a href="/concepts">Concepts</a>  / <a href="/mailinglists">Mailing Lists</a> / <a href="#">Blogs</a>
-    </div>
-</div>
-<!-- end .grid_12 menu_block -->
-
-{% endblock %}

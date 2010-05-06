@@ -4,9 +4,9 @@
 	<div class="grid_7 alpha ">&nbsp;</div>
 	<!-- <div class="grid_2 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
 	{% if user.is_authenticated %} 
-		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/admin/logout">Sign out</a></div>
+		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/accounts/logout">Sign out</a></div>
 	{% else %}
-	<div class="grid_3 omega signup"><a href="/admin/login">Login</a> / <a href="#">Signup</a></div>
+		<div class="grid_3 omega signup"><a href="/accounts/login">Login</a> / <a href="#">Signup</a></div>
 	{% endif %}
 </div>
 <!-- end .grid_12 user_bar -->
