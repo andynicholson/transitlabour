@@ -18,8 +18,10 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     (r'^$', page_view, {'page_name':'home'}),
-   (r'^(?P<page_name>[a-z-]+)/$', page_view ),
+    (r'^(?P<page_name>[a-z-]+)/$', page_view ),
 
     (r'^custom/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/andycat_/transitlabour.asia/transitlabour/templates/media'}),
+
+    (r'^accounts/', include('registration.backends.default.urls')),
 
 )
