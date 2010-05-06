@@ -1,0 +1,39 @@
+{% block menus %}
+ 
+ <div class="grid_12 alpha omega user_bar">
+	<div class="grid_7 alpha ">&nbsp;</div>
+	<!-- <div class="grid_2 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
+	{% if user.is_authenticated %} 
+		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/admin/logout">Sign out</a></div>
+	{% else %}
+	<div class="grid_3 omega signup"><a href="/admin/login">Login</a> / <a href="#">Signup</a></div>
+	{% endif %}
+</div>
+<!-- end .grid_12 user_bar -->
+<div class="clear"></div>
+
+
+<div class="grid_12 alpha omega header">
+	<div class="grid_9 alpha logo"><a href="#"><img src="/custom/img/transitlabour-logo.gif" alt="Transit Labour" width="390" height="274"></a></div>
+    <div class="grid_3 omega cities">
+    	<a href="#"><div class="shanghai">Shanghai</div></a>
+		<a href="#"><div class="kolkata">Kolkata</div></a>
+		<a href="#"><div class="sydney">Sydney</div></a>    
+	</div>
+    <!-- end .grid_3 cities -->
+</div>
+<!-- end .grid_12 header -->
+<div class="clear"></div>
+
+<!--
+Each menu item should only appear if there is actual content at the place being linked to.
+-->
+
+<div class="grid_12 alpha omega menu_block">
+	<div class="menu">
+		<a href="/home">Home</a> / <a href="/about">About</a> / <a href="/concepts">Concepts</a>  / <a href="/mailinglists">Mailing Lists</a> / <a href="#">Blogs</a>
+    </div>
+</div>
+<!-- end .grid_12 menu_block -->
+
+{% endblock %}
