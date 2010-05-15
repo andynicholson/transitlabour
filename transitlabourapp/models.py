@@ -30,4 +30,29 @@ class Page(models.Model):
 	return True
 
 
+#
+# Blog page
+#
+class Blog(models.Model):
+    header=models.CharField(max_length=50)
+    #page text attributes
+    teaser_text=models.TextField()
+    body=models.TextField(blank=True)
+    background_image = models.ImageField(upload_to='bgimg/%Y/%m/%d', blank=True)
+    published_date=models.DateTimeField(verbose_name='Date published', auto_now_add=True,blank=True,null=True)
+    edited_date = models.DateTimeField(verbose_name='Date edited', auto_now=True,blank=True,null=True)
+    slug = models.SlugField()
+    promoted = models.BooleanField()
+    author = models.ForeignKey(User, related_name='blogs')
+
+    def __unicode__(self):
+        return u'%s' % (self.header)
+
+    def get_absolute_url(self):
+        return "%s" % self.slug
+
+    def is_editable_page(self):
+	return True
+
+
 
