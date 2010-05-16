@@ -1,8 +1,17 @@
 from django.db import models
 #from django_extensions.db.fields import AutoSlugField
 from django.contrib.auth.models import User
+from django.forms import ModelForm
+
 
 # Create your models here.
+
+
+class UserProfile(models.Model):
+    # This is the only required field
+    user = models.ForeignKey(User, unique=True)
+    url=models.URLField(blank=True)
+
 #
 # News page
 #
