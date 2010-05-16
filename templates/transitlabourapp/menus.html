@@ -1,12 +1,16 @@
 {% block menus %}
  
  <div class="grid_12 alpha omega user_bar">
+	{% if user.is_authenticated %} 
+	<div class="grid_7 alpha ">Welcome {{user.first_name}} {{user.last_name}} ({{user.username}}). <a href="/profiles/edit">Your Profile</a></div>
+	{%else%}
 	<div class="grid_7 alpha ">&nbsp;</div>
+	{% endif %}
 	<!-- <div class="grid_2 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
 	{% if user.is_authenticated %} 
 		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/accounts/logout">Sign out</a></div>
 	{% else %}
-		<div class="grid_3 omega signup"><a href="/accounts/login">Login</a> / <a href="#">Signup</a></div>
+		<div class="grid_3 omega signup"><a href="/accounts/login">Login</a> / <a href="/accounts/register">Signup</a></div>
 	{% endif %}
 </div>
 <!-- end .grid_12 user_bar -->
@@ -31,7 +35,9 @@ Each menu item should only appear if there is actual content at the place being 
 
 <div class="grid_12 alpha omega menu_block">
 	<div class="menu">
-		<a href="/home">Home</a> / <a href="/about">About</a> / <a href="/concepts">Concepts</a>  / <a href="/mailinglists">Mailing Lists</a> / <a href="/blogs">Blogs</a>
+		<a href="/home">Home</a> / <a href="/about">About</a> / <a href="/concepts">Concepts</a>  / <a href="/maps">Maps</a> / <a href="/mailinglists">Mailing Lists</a> 
+		/ <a href="/publications">Publications</a> / <a href="/platforms">Platforms</a> / <a href="/blogs">Blogs</a> / <a href="/documentation">Documentation</a>
+
     </div>
 </div>
 <!-- end .grid_12 menu_block -->
