@@ -1,0 +1,31 @@
+  	{% extends "transitlabourapp/page.html" %}
+  	
+  	{% load i18n %}
+  	
+  	{% block content %}
+  	<h3>{% trans "User profile for" %} {{ user.first_name }} {{ user.last_name }} ({{user.username}}) </h3>
+
+  	    {% if form.errors %}
+  	    <p class="errorlist">{% trans "Sorry there are corrections needed in your form below:" %} {{ form.non_field_errors }}</p>
+  	    {% endif %}
+ 	    {% if form.is_multipart %}
+	    <form enctype="multipart/form-data" method="post" action=".">
+ 	    {% else %}
+ 	    <form method="post" action=".">
+ 	   {% endif %}
+		First Name<br/>
+		<input type="text" name="first_name" value="{{user.first_name}}" >
+		<br/>
+		Last Name<br/>
+		<input type="text" name="last_name" value="{{user.last_name}}" >
+		<br/>
+		Email<br/>
+		<input type="text" name="email" value="{{user.email}}" >
+		<br/>
+
+		   {{ form.as_p }}
+	   	<br/>
+  	        <input type="submit" value="Update" />
+  	   </form>
+	   <br/>
+  	{% endblock %}

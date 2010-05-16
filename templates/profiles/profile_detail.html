@@ -1,0 +1,35 @@
+{% extends "transitlabourapp/page.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<h3>{% trans "User profile for" %} {{ user.first_name }} {{ user.last_name }} </h3>
+
+<table >
+<tr>
+<th align="left">{% trans "Username" %}</th>
+<td>&nbsp;{{profile.user}}</td>
+</tr>
+
+<tr>
+<th align="left">{% trans "Name" %}</th>
+<td>{{profile.user.first_name}} {{profile.user.last_name}} </td>
+</tr>
+
+<tr>
+<th align="left">{% trans "Email" %}</th>
+<td>{{profile.user.email}} </td>
+</tr>
+
+<tr>
+<th align="left">{% trans "URL" %}</th>
+<td>{{profile.url}} </td>
+</tr>
+
+</table>
+
+<br />
+<p>{% trans "Edit you user profile " %}<a href="/profiles/create/">{% trans "here" %}</a></p>
+<p>{% trans "Reset your password " %}<a href="/accounts/password/reset/">{% trans "here" %}</a></p>
+{% endblock %}
+

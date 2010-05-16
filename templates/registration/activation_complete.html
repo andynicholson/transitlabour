@@ -1,0 +1,21 @@
+{% extends "transitlabourapp/page.html" %}
+{% load i18n %}
+
+{% block title %}
+Account Activation
+{% endblock%}
+
+{% block title_minor %}
+Account Activation
+{% endblock%}
+
+
+{% block content %}
+
+
+<p>{% trans "Account successfully activated" %}</p>
+
+<p><a href="{% url auth_login %}">{% trans "Log in" %}</a></p>
+
+
+{% endblock %}
