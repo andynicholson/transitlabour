@@ -27,7 +27,7 @@ class Page(models.Model):
     slug = models.SlugField()
     menu_position = models.IntegerField(default=0)
     promoted = models.BooleanField()
-    author = models.ForeignKey(User, related_name='pages')
+    author = models.ForeignKey(User, related_name='userpages')
 
     def __unicode__(self):
         return u'%s' % (self.header)
@@ -51,8 +51,9 @@ class Blog(models.Model):
     published_date=models.DateTimeField(verbose_name='Date published', auto_now_add=True,blank=True,null=True)
     edited_date = models.DateTimeField(verbose_name='Date edited', auto_now=True,blank=True,null=True)
     slug = models.SlugField()
-    promoted = models.BooleanField()
-    author = models.ForeignKey(User, related_name='blogs')
+    promoted = models.BooleanField(verbose_name='Promoted to home page')
+    author = models.ForeignKey(User, related_name='userblogs')
+    sticky = models.BooleanField(verbose_name='Sticky on top of user blog')
 
     def __unicode__(self):
         return u'%s' % (self.header)
@@ -63,5 +64,30 @@ class Blog(models.Model):
     def is_editable_page(self):
 	return True
 
+
+#
+# Event page
+#
+class Event(models.Model):
+    header=models.CharField(max_length=50)
+    #page text attributes
+    teaser_text=models.TextField()
+    body=models.TextField(blank=True)
+    background_image = models.ImageField(upload_to='bgimg/%Y/%m/%d', blank=True)
+    starting_date =models.DateTimeField(verbose_name='Starting time and date')
+    ending_date = models.DateTimeField(verbose_name='Ending time and date')
+    published_date=models.DateTimeField(verbose_name='Date published', auto_now_add=True,blank=True,null=True)
+    edited_date = models.DateTimeField(verbose_name='Date edited', auto_now=True,blank=True,null=True)
+    slug = models.SlugField()
+    author = models.ForeignKey(User, related_name='userevents')
+
+    def __unicode__(self):
+        return u'%s' % (self.header)
+
+    def get_absolute_url(self):
+        return "%s" % self.slug
+
+    def is_editable_page(self):
+	return True
 
 

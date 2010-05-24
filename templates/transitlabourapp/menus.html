@@ -8,7 +8,7 @@
 	{% endif %}
 	<!-- <div class="grid_2 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
 	{% if user.is_authenticated %} 
-		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/accounts/logout">Sign out</a></div>
+		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/admin/transitlabourapp/event/add">Event</a> / <a href="/accounts/logout">Sign out</a></div>
 	{% else %}
 		<div class="grid_3 omega signup"><a href="/accounts/login">Login</a> / <a href="/accounts/register">Signup</a></div>
 	{% endif %}
@@ -37,7 +37,7 @@ Each menu item should only appear if there is actual content at the place being 
 	<div class="menu">
 		<a href="/home">Home</a> / <a href="/about">About</a> / <a href="/concepts">Concepts</a>  / <a href="/maps">Maps</a> / <a href="/mailinglists">Mailing Lists</a> 
 		/ <a href="/publications">Publications</a> / <a href="/platforms">Platforms</a> / <a href="/blogs">Blogs</a> / <a href="/documentation">Documentation</a>
-
+		/ <a href="/events/">Events</a>
     </div>
 </div>
 <!-- end .grid_12 menu_block -->
