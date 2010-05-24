@@ -68,6 +68,32 @@ Each language should only be displayed if there are blog posts in that language.
 <!--
 The five latest blog posts go here.
 -->
+	{% for blog in sticky_blogs %}
+		    <div class="grid_9 alpha omega title">
+		    	<h1 class="title">{{blog.header}}</h1><br />
+		    	<h1 class="bloginfo"><span class="author">{{blog.author.first_name}} {{blog.author.last_name}}</span>
+				<span class="date">{{blog.published_date|date:"F d, Y"}}</span></h1>
+		    </div>
+    
+	    		<div class="grid_9 alpha omega teaser">
+				<span class="pad">{{blog.teaser_text|safe}}</span>
+			</div>
+			{% if blog_view %}
+			<div class="grid_9 alpha omega teaser">
+					<span class="pad">{{blog.body|safe}}</span>
+			</div>  
+			
+			<br/>
+				{% if user.is_authenticated %} 
+					<div class="grid_3 omega"><a href="/admin/transitlabourapp/blog/{{blog.id}}">Edit Blog</a></div>
+				{% endif %}             
+			{% else %}
+			<a href="/blogs/{{blog.slug}}"><div class="grid_9 alpha omega story_readmore"><span class="readmore">Read more</span></div></a>
+
+			{% endif%}
+
+	{% endfor %}
+
 	{% for blog in blogs %}
 		    <div class="grid_9 alpha omega title">
 		    	<h1 class="title">{{blog.header}}</h1><br />

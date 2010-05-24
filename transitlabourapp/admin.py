@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 
 from tinymce.widgets import TinyMCE 
-from transitlabour.transitlabourapp.models import Page, Blog, Event
+from transitlabour.transitlabourapp.models import Page, Blog, Event, Platform
 
 class PageAdmin(admin.ModelAdmin):
    list_display = ('header','published_date','parent')
@@ -76,8 +76,10 @@ class EventAdmin(admin.ModelAdmin):
         else:
                 return super(EventAdmin,self).response_add(request,obj)
 
+class PlatformAdmin(admin.ModelAdmin):
+	list_display=('name',)
 
-
+admin.site.register(Platform,PlatformAdmin)
 admin.site.register(Event,EventAdmin)
 admin.site.register(Blog,BlogAdmin)
 admin.site.register(Page,PageAdmin)

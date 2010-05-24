@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from transitlabourapp.views import page_view, blog_view, home_view, event_view
+from transitlabourapp.views import page_view, blog_view, home_view, event_view, platform_view
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -31,6 +31,12 @@ urlpatterns = patterns('',
     #home page
     (r'^$', home_view),
     (r'^home/$', home_view),
+
+    #platforms
+    (r'^sydney/$', platform_view,{'platform_name':'Sydney'}),
+    (r'^kolkata/$', platform_view,{'platform_name':'Kolkata'}),
+    (r'^shanghai/$', platform_view,{'platform_name':'Shanghai'}),
+
     #generic page views
     (r'^(?P<page_name>[a-z-]+)/$', page_view ),
 

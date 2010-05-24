@@ -40,6 +40,16 @@ class Page(models.Model):
 
 
 #
+# platform
+#
+class Platform(models.Model):
+    name=models.CharField(max_length=50)
+
+    def __unicode__(self):
+    	return u'%s'%self.name
+
+
+#
 # Blog page
 #
 class Blog(models.Model):
@@ -54,6 +64,8 @@ class Blog(models.Model):
     promoted = models.BooleanField(verbose_name='Promoted to home page')
     author = models.ForeignKey(User, related_name='userblogs')
     sticky = models.BooleanField(verbose_name='Sticky on top of user blog')
+    platform = models.ManyToManyField(Platform)
+    promoted_platform = models.BooleanField(verbose_name='Promoted to platform home page')
 
     def __unicode__(self):
         return u'%s' % (self.header)
