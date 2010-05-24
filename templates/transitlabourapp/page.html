@@ -137,67 +137,7 @@ the same as this page, but with the page title being "Blogs: Bloggers Name
     
 	</div>
 
-	<div class="grid_12 alpha omega footer">
-
-<!--
-The text for the license block will need to be editable 
--->
-    
-    <div class="grid_5 alpha license">
-<h2>License</h2>
-    Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 3.0 License
-	<br>
-    {% if user.is_authenticated %} <a href="/admin/transitlabourapp/page/{{object.id}}">Edit this page</a> | <a href="/admin/transitlabourapp/page/add">Publish a Page</a> {% endif %}
-
-    </div>
-
-<!--
-The text for the contact block will need to be editable 
--->
-    
-    <div class="grid_4 contact">
-<h2>Contact</h2>
-Transit Labour<br />
-School of Labour Research <br />
-University of Western Sydney<br />
-PO BOX 2874<br />
-Surry Hills<br />
-NSW 2010<br />
-Australia<br />
-<br />
-Email: info@transitlabour.net<br />
-Phone: +61 (0)2 9873 86732
-    </div>
-        
-
-<!--
-Credits links to a page that has the credits listed. 
-This can use the standard 'story' template that I will 
-send you in a moment.
--->
-
-    <a href="#">
-<div class="grid_3 omega credits"><span class="pad">Credits</span>
-</div>
-</a>
-
-    
-<div class="grid_3 omega supporting">
-<h2>Supporting</h2>
-Transit Labour<br />
-School of Labour Research <br />
-University of Western Sydney<br />
-PO BOX 2874<br />
-Surry Hills<br />
-NSW 2010<br />
-Australia<br />
-<br />
-Email: info@transitlabour.net<br />
-Phone: +61 (0)2 9873 86732
-    </div>
-       
-	</div>
-  	<!-- end .container_12 footer -->
+{% include 'transitlabourapp/footer.html' %}
 
     </div>
 	<!-- end .container_12 home -->

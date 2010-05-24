@@ -23,10 +23,10 @@ def platform_view(request, platform_name):
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
 
-	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events }
+	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events , 'platformpage':True}
 
 	template_file_name='home'
-	page_name='home'
+	page_name=platform_name
 	# find the Page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
@@ -40,7 +40,7 @@ def home_view(request):
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
 
-	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events }
+	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events , 'homepage':True}
 
 	template_file_name='home'
 	page_name='home'

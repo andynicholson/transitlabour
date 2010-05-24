@@ -10,6 +10,12 @@
   <div class="grid_12 alpha omega content">
   
     <div class="grid_9 alpha left">
+	    {% if not homepage %}
+	    <div class="grid_9 alpha omega page-title">
+		    <h1 class="title">Platform - {{object.header}}</h1><br />
+	    </div>
+	    {% endif%}
+
 
     {% for home_page_promoted_story in pblogs %}
 
