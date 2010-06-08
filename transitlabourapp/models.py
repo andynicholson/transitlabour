@@ -84,10 +84,23 @@ class Blog(models.Model):
         return u'%s' % (self.header)
 
     def get_absolute_url(self):
-        return "%s" % self.slug
+        return "/blogs/%s" % self.slug
 
     def is_editable_page(self):
 	return True
+
+    def blog_header_image_url(self):
+	if not self.background_image is None and not self.background_image.name.strip() == '':
+		return "/custom/%s" % self.background_image
+	else:
+		return "/custom/img/transitlabour-imagehero.gif"
+
+    def blog_header_image_css_padding(self):
+	if not self.background_image is None and not self.background_image.name.strip() == '':
+		return self.background_image.height-72
+	else:
+		return 300
+
 
 
 #

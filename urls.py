@@ -1,6 +1,10 @@
 from django.conf.urls.defaults import *
 
 from transitlabourapp.views import page_view, blog_view, home_view, event_view, platform_view
+from transitlabourapp.feeds import LatestEntries
+feeds = {
+  'blog': LatestEntries,
+}
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -39,5 +43,8 @@ urlpatterns = patterns('',
 
     #generic page views
     (r'^(?P<page_name>[a-z-]+)/$', page_view ),
+
+    #rss feeds
+    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
 
     )

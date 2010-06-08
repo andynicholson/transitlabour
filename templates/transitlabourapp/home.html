@@ -24,10 +24,18 @@
 
 
     {% for home_page_promoted_story in pblogs %}
+	<style>
+	.story_title_{{home_page_promoted_story.slug}} { 
+			padding-bottom:{{home_page_promoted_story.blog_header_image_css_padding}}px;
+			background:url({{home_page_promoted_story.blog_header_image_url}}); }
+	</style>
+   {% endfor %}
+
+    {% for home_page_promoted_story in pblogs %}
 
       <div class="grid_9 omega alpha story">
       
-        <div class="grid_9 alpha omega story_title">
+        <div class="grid_9 alpha omega story_title_{{home_page_promoted_story.slug}}">
         <div class="grid_9 alpha omega">
           <h1 class="title"> {{ home_page_promoted_story.header }}</h1>
 	</div>
@@ -80,6 +88,11 @@
         <div class="view_all">View all blog posts</div>
       </div>
       </a> 
+
+ <a href="/feeds/blog">
+        <div class="grid_3 alpha omega all_bloggers"><div class="view_all">Blog RSS</div></div>
+    </a>
+
       
       </div>
     <!-- end .grid_3 right -->
