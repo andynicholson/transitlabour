@@ -14,10 +14,10 @@
 <style>
 
 body {
-background:url(/custom/img/transitlabour-background-brokenlines.gif);
+background:url({{object.background_image_url}});
 }
 .header {
-background:url(/custom/img/transitlabour-background-shanghai.png) no-repeat;
+background:url({{object.platform_header_image_url}}) no-repeat;
 }
 .story_title {
 padding-bottom:300px;
@@ -77,7 +77,6 @@ The five latest blog posts go here.
 	    		<div class="grid_9 alpha omega list">
 				<h1 class="title">{{object.teaser_text|safe}}</h1>
 			</div>
-
 				{{object.body|safe}}
                 
 		</div>

@@ -10,8 +10,8 @@ padding-bottom:5px;
 padding-bottom:5px;
 }
 .cities {
-padding-bottom:7px;
-padding-top:140px;
+padding-bottom:5px;
+padding-top:135px;
 }
 .cities a {
 color:#0066FF;
@@ -30,13 +30,13 @@ padding:8px;
 a .shanghai {
 background:#00CC33;
 padding:8px;
-margin-bottom:7px;
+margin-bottom:5px;
 padding-left:10px;
 }
 a .kolkata {
 background:#00FFFF;
 padding:8px;
-margin-bottom:7px;
+margin-bottom:5px;
 padding-left:10px;
 }
 .menu {
@@ -153,6 +153,22 @@ display:inline-block;
 border:8px solid #FFFF00;
 font-size:16px;
 }
+h1.title {
+background:#FFFF00;
+color:#0066FF;
+display:inline-block;
+border:8px solid #FFFF00;
+font-size:16px;
+}
+h1.story_info {
+background:#FFFF00;
+color:#0066FF;
+display:inline-block;
+border:8px solid #FFFF00;
+font-size:16px;
+border-top:0px;
+clear:both;
+}
 .info {
 border-top:0px;
 margin-top:-30px;
@@ -176,7 +192,6 @@ color:#FFFFFF;
 text-decoration:none;
 }
 .story_info {
-border-top:0px;
 }
 .previous_posts {
 background:#F6F6F6;
@@ -207,6 +222,7 @@ background:#F6F6F6;
 display:block;
 color:#0066FF;
 margin:8px;
+padding-right:15px;
 }
 .footer {
 margin-bottom:65px;
@@ -289,22 +305,22 @@ display:inline-block;
 border:8px solid #006600;
 display:inline-block;
 }
-.credits {
+.credits, .contact, .supporting {
 background:#0066FF;
 margin-bottom:10px;
 }
-.credits .pad {
+.credits .pad, .supporting .pad, .contact .pad {
 padding:8px;
 padding-left:10px;
 display:inline-block;
 }
-a .credits {
+a .contact, a .credits, a .supporting {
 color:#F6F6F6;
 text-decoration:none;
 font-size:16px;
 font-weight:bold;
 }
-a .credits:hover {
+a .contact:hover, a .credits:hover, a .supporting:hover {
 color:#0066FF;
 background:#F6F6F6;
 text-decoration:none;
@@ -331,4 +347,21 @@ padding:8px;
 }
 label {
 display:block;
+}
+.logo img {
+margin-bottom:0px;
+line-height:0;
+margin:0px;
+}
+.logo a {
+margin-bottom:0px;
+line-height:0;
+margin:0px;
+}
+a {
+outline: none;
+}
+
+.content a {
+color:#0066FF;
 }

@@ -1,37 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Transit Labour : Blogs</title>
-<link rel="stylesheet" href="/custom/css/reset.css" />
-<link rel="stylesheet" href="/custom/css/text.css" />
-<link rel="stylesheet" href="/custom/css/960.css" />
-<link rel="stylesheet" href="/custom/css/default.css" />
-<script src="/custom/js/autoclear.js" type="text/javascript"></script>
-<style>
+{% extends 'transitlabourapp/about.html' %}
 
-body {
-background:url(/custom/img/transitlabour-background-brokenlines.gif);
-}
-.header {
-background:url(/custom/img/transitlabour-background-shanghai.png) no-repeat;
-}
-.story_title {
-padding-bottom:300px;
-background:url(/custom/img/transitlabour-imagehero.gif);
-}
+{% block body %}
 
-<!--
-Images for the page are defined here (e.g. the .story_title selector).
-For the .story_title and .bottom .news images the padding dimensions 
-are loaded here from the image height so that all of the image is 
-displayed. Each story will require a unique div class so that the images 
-can be different heights and still display correctly. 
--->
-
-</style>
-
-</head>
 <body>
 
 <!--
@@ -55,13 +25,15 @@ Each language should only be displayed if there are blog posts in that language.
 		<div class="grid_3 alpha languages-header"><h1><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></h1></div>
 -->
 
-	    <div class="grid_9 alpha omega page-title">
 	    {% if not author_view %}
-		    <h1 class="title">Blogs</h1><br />
+	    <div class="grid_9 alpha omega page-title">
+		    <h1 class="title">Blogs</h1>
+	   </div>
 	    {% else %}
+	    <div class="grid_9 alpha omega page-title">
 		    <h1 class="title">{{bauthor.first_name}} {{bauthor.last_name}}'s Blog</h1><br />
-	    {% endif%}
 	    </div>
+	    {% endif%}
 
 	    <div class="grid_9 alpha omega blog">
 
@@ -70,7 +42,8 @@ The five latest blog posts go here.
 -->
 	{% for blog in sticky_blogs %}
 		    <div class="grid_9 alpha omega title">
-		    	<h1 class="title">{{blog.header}}</h1><br />
+		    	<h1 class="title">{{blog.header}}</h1></div>
+		    <div class="grid_9 alpha omega title">
 		    	<h1 class="bloginfo"><span class="author">{{blog.author.first_name}} {{blog.author.last_name}}</span>
 				<span class="date">{{blog.published_date|date:"F d, Y"}}</span></h1>
 		    </div>
@@ -96,7 +69,9 @@ The five latest blog posts go here.
 
 	{% for blog in blogs %}
 		    <div class="grid_9 alpha omega title">
-		    	<h1 class="title">{{blog.header}}</h1><br />
+		    	<h1 class="title">{{blog.header}}</h1>
+		   </div>
+		    <div class="grid_9 alpha omega title">
 		    	<h1 class="bloginfo"><span class="author">{{blog.author.first_name}} {{blog.author.last_name}}</span>
 				<span class="date">{{blog.published_date|date:"F d, Y"}}</span></h1>
 		    </div>
@@ -187,3 +162,4 @@ the same as this page, but with the page title being "Blogs: Bloggers Name
 
 </body>
 </html>
+{% endblock %}

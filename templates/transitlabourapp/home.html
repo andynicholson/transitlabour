@@ -14,6 +14,12 @@
 	    <div class="grid_9 alpha omega page-title">
 		    <h1 class="title">Platform - {{object.header}}</h1><br />
 	    </div>
+	    <div class="grid_9 alpha omega list">
+          <h1 class="title">
+	{{object.body|safe}}	
+	</h1>
+	</div>
+
 	    {% endif%}
 
 
@@ -22,8 +28,9 @@
       <div class="grid_9 omega alpha story">
       
         <div class="grid_9 alpha omega story_title">
-          <h1 class="title"> {{ home_page_promoted_story.header }}
-          <br />
+        <div class="grid_9 alpha omega">
+          <h1 class="title"> {{ home_page_promoted_story.header }}</h1>
+	</div>
           <h1 class="story_info"><span class="author">{{home_page_promoted_story.author.first_name}} {{home_page_promoted_story.author.last_name}}</span> <span class="date">{{home_page_promoted_story.published_date|date:"F d, Y"}}</span></h1>
         </div>
         <div class="grid_9 omega alpha teaser"> <span class="pad"> 
@@ -88,8 +95,12 @@
 	
     <div class="grid_6 alpha">
       <div class="grid_6 alpha omega news">
+      <div class="grid_6 alpha omega">
         <h1 class="title">{{lb.header}}</h1>
+	</div>
+      <div class="grid_6 alpha omega">
         <h1 class="info"><span class="author">{{lb.author.first_name}} {{lb.author.last_name}}</span> <span class="date">{{lb.published_date|date:"F d, Y"}}</span></h1>
+	</div>
       </div>
       
       <a href="/blogs/{{lb.slug}}">

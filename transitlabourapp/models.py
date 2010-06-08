@@ -28,6 +28,7 @@ class Page(models.Model):
     menu_position = models.IntegerField(default=0)
     promoted = models.BooleanField()
     author = models.ForeignKey(User, related_name='userpages')
+    platform_header_image = models.ImageField(upload_to='bgimg/%Y/%m/%d', blank=True)
 
     def __unicode__(self):
         return u'%s' % (self.header)
@@ -37,6 +38,18 @@ class Page(models.Model):
 
     def is_editable_page(self):
 	return True
+
+    def background_image_url(self):
+	if not self.background_image is None and not self.background_image.name.strip() == '':
+		return "/custom/%s" % self.background_image
+	else:
+		return "/custom/img/transitlabour-background-brokenlines.gif"
+
+    def platform_header_image_url(self):
+	if not self.platform_header_image is None and not self.platform_header_image.name.strip() == '':
+		return "/custom/%s" % self.platform_header_image
+	else:
+		return "/custom/img/transitlabour-background-shanghai.png"
 
 
 #

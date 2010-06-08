@@ -14,14 +14,16 @@ from transitlabour.transitlabourapp.models import Page, Blog, Event, Platform
 import datetime
 
 def platform_view(request, platform_name):
-	bloggers = User.objects.all()
 	#find the required blog via its slug 'slug_name'
 	platform = Platform.objects.all().filter(name=platform_name)
 
 	blogs = Blog.objects.all().filter(promoted_platform=True, platform=platform).order_by('-published_date')[:2]
         lblogs = Blog.objects.all().filter(promoted_platform=False, platform=platform).order_by('-published_date')[:4]
+
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
+
+	bloggers = latest_bloggers(lblogs)
 
 	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events , 'platformpage':True}
 
@@ -32,13 +34,14 @@ def platform_view(request, platform_name):
 
 
 def home_view(request):
-	bloggers = User.objects.all()
 	#find the required blog via its slug 'slug_name'
 
 	blogs = Blog.objects.all().filter(promoted=True).order_by('-published_date')[:2]
         lblogs = Blog.objects.all().filter(promoted=False).order_by('-published_date')[:4]
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
+
+	bloggers = latest_bloggers(blogs)
 
 	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events , 'homepage':True}
 
@@ -49,9 +52,10 @@ def home_view(request):
 
 
 def blog_view(request, slug_name, author_name):
-	bloggers = User.objects.all()
-	#find the required blog via its slug 'slug_name'
+	# note - this is currently only used for a specfic blog view and author view - not the front page of the "blogs" section of the site
+	# check urls.py carefully
 
+	#find the required blog via its slug 'slug_name'
 	if not slug_name is None:
 		blogs = Blog.objects.all().filter(slug=slug_name).order_by('-published_date')
 		author_view = False
@@ -59,11 +63,14 @@ def blog_view(request, slug_name, author_name):
 		bauthor = None
 		sticky_blogs = None
 	else:
+		#no slugname - author view
 		bauthor = User.objects.all().filter(username=author_name)[0]
 		blogs = Blog.objects.all().filter(author=bauthor, sticky=False).order_by('-published_date')
 		sticky_blogs = Blog.objects.all().filter(author=bauthor, sticky=True).order_by('-published_date')
 		author_view = True
 		blog_view = False
+
+	bloggers = latest_bloggers(blogs)
 
 	extra_context = {'bloggers':bloggers, 'blogs':blogs, 'blog_view':blog_view, 'author_view':author_view, 'bauthor':bauthor, 'sticky_blogs':sticky_blogs}
 
@@ -73,7 +80,6 @@ def blog_view(request, slug_name, author_name):
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 def event_view(request, slug_name, author_name):
-	bloggers = User.objects.all()
 	#find the required blog via its slug 'slug_name'
 
 	if not slug_name is None:
@@ -87,6 +93,7 @@ def event_view(request, slug_name, author_name):
 		author_view = True
 		event_view = False
 
+	bloggers=[]
 	extra_context = {'bloggers':bloggers, 'events':events, 'event_view':event_view, 'author_view':author_view, 'bauthor':bauthor}
 
 	template_file_name='events'
@@ -96,12 +103,14 @@ def event_view(request, slug_name, author_name):
 
 
 def page_view(request, page_name):
-	bloggers = User.objects.all()
 	blogs = Blog.objects.all().order_by('-published_date')
 	events = Event.objects.all().order_by('-starting_date')
-	extra_context = {'bloggers':bloggers, 'blogs':blogs, 'events':events}
+	bloggers = latest_bloggers(blogs)
 
+
+	extra_context = {'bloggers':bloggers, 'blogs':blogs, 'events':events}
 	#decide which template file to use based on page name
+	# ie - this view currently handles - home , blogs, and events top level pages
 	if page_name == 'home' or page_name=='blogs' or page_name=='events':
 		template_file_name=page_name
 	else:
@@ -109,3 +118,14 @@ def page_view(request, page_name):
 		template_file_name='about'
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
+def latest_bloggers(blogs):
+        bloggers = []
+        for lblog in blogs:
+                skip = False
+                for b in bloggers:
+                        if b == lblog.author:
+                                skip = True
+                                break
+                if not skip:
+                        bloggers.append(lblog.author)
+	return bloggers

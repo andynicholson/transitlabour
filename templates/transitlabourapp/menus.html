@@ -2,11 +2,11 @@
  
  <div class="grid_12 alpha omega user_bar">
 	{% if user.is_authenticated %} 
-	<div class="grid_7 alpha ">Welcome {{user.first_name}} {{user.last_name}} ({{user.username}}). <a href="/profiles/edit">Your Profile</a></div>
+	<div class="grid_9 alpha ">Welcome {{user.first_name}} {{user.last_name}} ({{user.username}}). <a href="/profiles/edit">Your Profile</a></div>
 	{%else%}
-	<div class="grid_7 alpha ">&nbsp;</div>
+	<div class="grid_9 alpha ">&nbsp;</div>
 	{% endif %}
-	<!-- <div class="grid_2 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
+	<!-- <div class="grid_3 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
 	{% if user.is_authenticated %} 
 		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/admin/transitlabourapp/event/add">Event</a> / <a href="/accounts/logout">Sign out</a></div>
 	{% else %}
@@ -17,8 +17,27 @@
 <div class="clear"></div>
 
 
-<div class="grid_12 alpha omega header">
-	<div class="grid_9 alpha logo"><a href="#"><img src="/custom/img/transitlabour-logo.gif" alt="Transit Labour" width="390" height="274"></a></div>
+<div class="grid_12 alpha omega header {{object.slug}}">
+	<div class="grid_9 alpha logo">
+	<div class="grid_9 alpha omega">
+<a href="http://www.transitlabour.asia/about-bengali"><img src="/custom/img/transitlabour-logo_01.gif" /></a>
+	</div>
+	<div class="grid_9 alpha omega">
+<a href="http://www.transitlabour.asia/about-mandarin"><img src="/custom/img/transitlabour-logo_02.gif" /></a>
+	</div>
+	<div class="grid_9 alpha omega">
+<a href="http://www.transitlabour.asia/about/"><img src="/custom/img/transitlabour-logo_03.gif" /></a>
+	</div>
+	<div class="grid_9 alpha omega">
+<a href="http://www.transitlabour.asia/about-bengali/"><img src="/custom/img/transitlabour-logo_04.gif" /></a>
+	</div>
+	<div class="grid_9 alpha omega">
+<a href="http://www.transitlabour.asia/about-mandarin/"><img src="/custom/img/transitlabour-logo_05.gif" /></a>
+	</div>
+	<div class="grid_9 alpha omega">
+<a href="http://www.transitlabour.asia/concepts/"><img src="/custom/img/transitlabour-logo_06.gif" /></a>
+</div>
+</div>
     <div class="grid_3 omega cities">
     		<a href="/shanghai"><div class="shanghai">Shanghai</div></a>
 		<a href="/kolkata"><div class="kolkata">Kolkata</div></a>

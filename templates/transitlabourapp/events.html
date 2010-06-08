@@ -55,13 +55,15 @@ Each language should only be displayed if there are blog posts in that language.
 		<div class="grid_3 alpha languages-header"><h1><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></h1></div>
 -->
 
-	    <div class="grid_9 alpha omega page-title">
 	    {% if not author_view %}
-		    <h1 class="title">Events</h1><br />
-	    {% else %}
-		    <h1 class="title">{{bauthor.first_name}} {{bauthor.last_name}}'s Events</h1><br />
-	    {% endif%}
+	    <div class="grid_9 alpha omega page-title">
+		    <h1 class="title">Events</h1>
 	    </div>
+	    {% else %}
+	    <div class="grid_9 alpha omega page-title">
+		    <h1 class="title">{{bauthor.first_name}} {{bauthor.last_name}}'s Events</h1>
+	    </div>
+	    {% endif%}
 
 	    <div class="grid_9 alpha omega blog">
 
@@ -70,16 +72,12 @@ The five latest events posts go here.
 -->
 	{% for event in events %}
 		    <div class="grid_9 alpha omega title">
-		    	<h1 class="title">{{event.header}}</h1><br />
-		    	<h1 class="bloginfo"><span class="author">{{event.author.first_name}} {{event.author.last_name}}</span>
-				<span class="date">Published: {{event.published_date|date:"F d, Y"}}</span>
-			</h1>
-			<br/>
+		    	<h1 class="title">{{event.header}}</h1>
+		    </div>
+		    <div class="grid_9 alpha omega title">
 		    	<h1 class="bloginfo"><span class="date">From: {{event.starting_date|date:"F d, Y"}}</span>
 					     <span class="date">To: {{event.ending_date|date:"F d, Y"}}</span>
-
 			</h1>
-
 		    </div>
     
 	    		<div class="grid_9 alpha omega teaser">
