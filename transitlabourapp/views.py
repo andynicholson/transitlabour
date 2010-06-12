@@ -13,19 +13,40 @@ from django.contrib.auth.models import User
 from transitlabour.transitlabourapp.models import Page, Blog, Event, Platform
 import datetime
 
+OBJECTS_PER_PAGE = 4
+
+def paginate(request,list,pagename='page'):
+	paginator = Paginator(list, OBJECTS_PER_PAGE) # Show 2 events per page
+        # Make sure page request is an int. If not, deliver first page.
+        try:
+                page = int(request.GET.get(pagename, '1'))
+        except ValueError:
+                page = 1
+
+        # If page request (9999) is out of range, deliver last page of results.
+        try:
+                result_paginator = paginator.page(page)
+        except (EmptyPage, InvalidPage):
+                result_paginator = paginator.page(paginator.num_pages)
+	return result_paginator
+
+
 def platform_view(request, platform_name):
 	#find the required blog via its slug 'slug_name'
 	platform = Platform.objects.all().filter(name=platform_name)
 
 	blogs = Blog.objects.all().filter(promoted_platform=True, platform=platform).order_by('-published_date')[:2]
-        lblogs = Blog.objects.all().filter(promoted_platform=False, platform=platform).order_by('-published_date')[:4]
+        lblogs = Blog.objects.all().filter(promoted_platform=False, platform=platform).order_by('-published_date')
 
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
 
 	bloggers = latest_bloggers(lblogs)
 
-	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events , 'platformpage':True}
+   	#paginate results
+        blog_paginator = paginate(request,lblogs)
+
+	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':blog_paginator, 'events':events , 'platformpage':True}
 
 	template_file_name='home'
 	page_name=platform_name
@@ -37,13 +58,16 @@ def home_view(request):
 	#find the required blog via its slug 'slug_name'
 
 	blogs = Blog.objects.all().filter(promoted=True).order_by('-published_date')[:2]
-        lblogs = Blog.objects.all().filter(promoted=False).order_by('-published_date')[:4]
+        lblogs = Blog.objects.all().filter(promoted=False).order_by('-published_date')
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
 
 	bloggers = latest_bloggers(blogs)
 
-	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':lblogs, 'events':events , 'homepage':True}
+	#paginate results
+	blog_paginator = paginate(request,lblogs)
+
+	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':blog_paginator, 'events':events , 'homepage':True}
 
 	template_file_name='home'
 	page_name='home'
@@ -72,7 +96,10 @@ def blog_view(request, slug_name, author_name):
 
 	bloggers = latest_bloggers(blogs)
 
-	extra_context = {'bloggers':bloggers, 'blogs':blogs, 'blog_view':blog_view, 'author_view':author_view, 'bauthor':bauthor, 'sticky_blogs':sticky_blogs}
+	#paginate results
+	blog_paginator = paginate(request,blogs)
+
+	extra_context = {'bloggers':bloggers, 'blogs':blog_paginator, 'blog_view':blog_view, 'author_view':author_view, 'bauthor':bauthor, 'sticky_blogs':sticky_blogs}
 
 	template_file_name='blogs'
 	page_name='blogs'
@@ -107,8 +134,11 @@ def page_view(request, page_name):
 	events = Event.objects.all().order_by('-starting_date')
 	bloggers = latest_bloggers(blogs)
 
+	#paginate the blogs homepage
+	blogs_paginator = paginate(request,blogs)
 
-	extra_context = {'bloggers':bloggers, 'blogs':blogs, 'events':events}
+	extra_context = {'bloggers':bloggers, 'blogs':blogs_paginator, 'events':events}
+
 	#decide which template file to use based on page name
 	# ie - this view currently handles - home , blogs, and events top level pages
 	if page_name == 'home' or page_name=='blogs' or page_name=='events':

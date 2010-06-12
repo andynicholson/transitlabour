@@ -96,7 +96,7 @@
   <div class="grid_12 alpha omega bottom">
       
    
-   	{% for lb in lblogs %}
+   	{% for lb in lblogs.object_list %}
 	
     <div class="grid_6 alpha">
       <div class="grid_6 alpha omega news_{{lb.slug}}">
@@ -116,11 +116,19 @@
 
     </div>
 	<br/>
+{% if lblogs.has_next %}
+    <a href="?page={{lblogs.next_page_number }}">
+	<div class="grid_3 alpha omega previous_posts"> <span class="pad">Older posts</span> </div>
+    </a>
+ 
+{% endif %}
 
-    <a href="/blogs/">
-    <div class="grid_3 alpha omega previous_posts"> <span class="pad">Previous posts</span> </div>
+ {% if lblogs.has_previous %}
+<a href="?page={{lblogs.prev_page_number}}">
+    <div class="grid_3 alpha omega previous_posts"> <span class="pad">Newer posts</span> </div>
     </a> 
-    
+ {% endif %}
+  
   <!-- end .grid_12 bottom -->
   <div class="clear"></div>
   

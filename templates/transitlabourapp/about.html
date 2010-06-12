@@ -21,7 +21,7 @@ background:url({{object.platform_header_image_url}}) no-repeat;
 }
 </style>
 
-   {% for lb in lblogs %}
+   {% for lb in lblogs.object_list %}
 	<style>
 	.bottom .news_{{lb.slug}} {
 	padding-bottom:{{lb.blog_header_smaller_image_css_padding}}px;
@@ -47,7 +47,7 @@ background:url({{object.platform_header_image_url}}) no-repeat;
 	</style>
    {% endfor %}
 
-{% for blog in blogs %}
+{% for blog in blogs.object_list %}
 	<style>
 	.story_title_{{blog.slug}} { 
 			padding-bottom:{{blog.blog_header_image_css_padding}}px;

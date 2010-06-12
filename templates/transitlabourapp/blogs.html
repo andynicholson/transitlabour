@@ -69,7 +69,7 @@ The five latest blog posts go here.
 	{% endfor %}
 
 
-	{% for blog in blogs %}
+	{% for blog in blogs.object_list %}
 	<div class="grid_9 alpha omega blog">
 
 		    <div class="grid_9 alpha omega story_title_{{blog.slug}}">
@@ -98,8 +98,22 @@ The five latest blog posts go here.
 	{% endfor %}
 		<!-- end template -->
 		   
-    </div>
 	<!-- end .grid_9 left -->
+ {% if blogs.has_next %}
+    <a href="?page={{ blogs.next_page_number }}">
+	<div class="grid_3 alpha omega previous_posts"> <span class="pad">Older posts</span> </div>
+    </a>
+ 
+{% endif %}
+
+ {% if blogs.has_previous %}
+<a href="?page={{blogs.prev_page_number}}">
+    <div class="grid_3 alpha omega previous_posts"> <span class="pad">Newer posts</span> </div>
+    </a> 
+ {% endif %}
+   
+
+    </div>
      
     <div class="grid_3 omega right">
     
