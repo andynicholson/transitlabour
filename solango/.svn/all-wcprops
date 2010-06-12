@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/55/trunk/solango
+END
+license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/2/trunk/solango/license.txt
+END
+managers.py
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/2/trunk/solango/managers.py
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/49/trunk/solango/views.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/43/trunk/solango/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/49/trunk/solango/settings.py
+END
+utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/49/trunk/solango/utils.py
+END
+log.py
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/33/trunk/solango/log.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/43/trunk/solango/models.py
+END
+paginator.py
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/53/trunk/solango/paginator.py
+END
+indexing.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/54/trunk/solango/indexing.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/10/trunk/solango/urls.py
+END
+forms.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/13/trunk/solango/forms.py
+END
