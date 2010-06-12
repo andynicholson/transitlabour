@@ -19,6 +19,43 @@ background:url({{object.background_image_url}});
 .header {
 background:url({{object.platform_header_image_url}}) no-repeat;
 }
+</style>
+
+   {% for lb in lblogs %}
+	<style>
+	.bottom .news_{{lb.slug}} {
+	padding-bottom:{{lb.blog_header_smaller_image_css_padding}}px;
+	background: url({{lb.blog_header_smaller_image_url}}); }
+
+	</style>
+   {% endfor %}
+
+
+    {% for home_page_promoted_story in pblogs %}
+	<style>
+	.story_title_{{home_page_promoted_story.slug}} { 
+			padding-bottom:{{home_page_promoted_story.blog_header_image_css_padding}}px;
+			background:url({{home_page_promoted_story.blog_header_image_url}}); }
+	</style>
+   {% endfor %}
+
+{% for blog in sticky_blogs %}
+	<style>
+	.story_title_{{blog.slug}} { 
+			padding-bottom:{{blog.blog_header_image_css_padding}}px;
+			background:url({{blog.blog_header_image_url}}); }
+	</style>
+   {% endfor %}
+
+{% for blog in blogs %}
+	<style>
+	.story_title_{{blog.slug}} { 
+			padding-bottom:{{blog.blog_header_image_css_padding}}px;
+			background:url({{blog.blog_header_image_url}}); }
+	</style>
+   {% endfor %}
+
+
 
 <!--
 Images for the page are defined here (e.g. the .story_title selector).
@@ -27,8 +64,6 @@ are loaded here from the image height so that all of the image is
 displayed. Each story will require a unique div class so that the images 
 can be different heights and still display correctly. 
 -->
-
-</style>
 
 </head>
 
@@ -122,6 +157,14 @@ the same as this page, but with the page title being "Blogs: Bloggers Name
 </div>
 </a>
 {% endfor %}
+
+<a href="/blogs">
+        <div class="grid_3 alpha omega all_bloggers"><div class="view_all">View all blog posts</div></div>
+</a>
+
+    <a href="/feeds/blog">
+        <div class="grid_3 alpha omega all_bloggers"><div class="view_all">Blog RSS</div></div>
+    </a>
 
 <!--
     <a href="#">

@@ -35,15 +35,16 @@ Each language should only be displayed if there are blog posts in that language.
 	    </div>
 	    {% endif%}
 
-	    <div class="grid_9 alpha omega blog">
 
 <!--
 The five latest blog posts go here.
 -->
+
 	{% for blog in sticky_blogs %}
-		    <div class="grid_9 alpha omega title">
-		    	<h1 class="title">{{blog.header}}</h1></div>
-		    <div class="grid_9 alpha omega title">
+
+	    <div class="grid_9 alpha omega blog">
+		    <div class="grid_9 alpha omega story_title_{{blog.slug}}">
+		    	<h1 class="title">{{blog.header}}</h1><br/>
 		    	<h1 class="bloginfo"><span class="author">{{blog.author.first_name}} {{blog.author.last_name}}</span>
 				<span class="date">{{blog.published_date|date:"F d, Y"}}</span></h1>
 		    </div>
@@ -64,14 +65,15 @@ The five latest blog posts go here.
 			<a href="/blogs/{{blog.slug}}"><div class="grid_9 alpha omega story_readmore"><span class="readmore">Read more</span></div></a>
 
 			{% endif%}
-
+		</div>
 	{% endfor %}
+
 
 	{% for blog in blogs %}
-		    <div class="grid_9 alpha omega title">
-		    	<h1 class="title">{{blog.header}}</h1>
-		   </div>
-		    <div class="grid_9 alpha omega title">
+	<div class="grid_9 alpha omega blog">
+
+		    <div class="grid_9 alpha omega story_title_{{blog.slug}}">
+		    	<h1 class="title">{{blog.header}}</h1><br/>
 		    	<h1 class="bloginfo"><span class="author">{{blog.author.first_name}} {{blog.author.last_name}}</span>
 				<span class="date">{{blog.published_date|date:"F d, Y"}}</span></h1>
 		    </div>
@@ -92,10 +94,9 @@ The five latest blog posts go here.
 			<a href="/blogs/{{blog.slug}}"><div class="grid_9 alpha omega story_readmore"><span class="readmore">Read more</span></div></a>
 
 			{% endif%}
-
+		</div>
 	{% endfor %}
 		<!-- end template -->
-	</div>
 		   
     </div>
 	<!-- end .grid_9 left -->

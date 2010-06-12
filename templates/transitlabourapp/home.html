@@ -24,14 +24,6 @@
 
 
     {% for home_page_promoted_story in pblogs %}
-	<style>
-	.story_title_{{home_page_promoted_story.slug}} { 
-			padding-bottom:{{home_page_promoted_story.blog_header_image_css_padding}}px;
-			background:url({{home_page_promoted_story.blog_header_image_url}}); }
-	</style>
-   {% endfor %}
-
-    {% for home_page_promoted_story in pblogs %}
 
       <div class="grid_9 omega alpha story">
       
@@ -102,12 +94,12 @@
   <div class="clear"></div>
   
   <div class="grid_12 alpha omega bottom">
-  
+      
    
    	{% for lb in lblogs %}
 	
     <div class="grid_6 alpha">
-      <div class="grid_6 alpha omega news">
+      <div class="grid_6 alpha omega news_{{lb.slug}}">
       <div class="grid_6 alpha omega">
         <h1 class="title">{{lb.header}}</h1>
 	</div>

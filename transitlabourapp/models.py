@@ -101,6 +101,19 @@ class Blog(models.Model):
 	else:
 		return 300
 
+    def blog_header_smaller_image_url(self):
+	if not self.background_image is None and not self.background_image.name.strip() == '':
+		return "/custom/%s" % self.background_image
+	else:
+		return "/custom/img/transitlabour-imagesmaller.gif"
+
+    def blog_header_smaller_image_css_padding(self):
+	if not self.background_image is None and not self.background_image.name.strip() == '':
+		return self.background_image.height-72
+	else:
+		return 160
+
+
 
 
 #
