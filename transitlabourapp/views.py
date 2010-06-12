@@ -39,7 +39,7 @@ def platform_view(request, platform_name):
         lblogs = Blog.objects.all().filter(promoted_platform=False, platform=platform).order_by('-published_date')
 
 	today = datetime.datetime.today()
-	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
+	events = Event.objects.all().filter(ending_date__gt=today).order_by('starting_date')[:5]
 
 	bloggers = latest_bloggers(lblogs)
 
@@ -50,7 +50,7 @@ def platform_view(request, platform_name):
 
 	template_file_name='home'
 	page_name=platform_name
-	# find the Page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
+	# find the page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 
@@ -60,7 +60,7 @@ def home_view(request):
 	blogs = Blog.objects.all().filter(promoted=True).order_by('-published_date')[:2]
         lblogs = Blog.objects.all().filter(promoted=False).order_by('-published_date')
 	today = datetime.datetime.today()
-	events = Event.objects.all().filter(ending_date__gt=today).order_by('-starting_date')[:5]
+	events = Event.objects.all().filter(ending_date__gt=today).order_by('starting_date')[:5]
 
 	bloggers = latest_bloggers(blogs)
 
@@ -71,7 +71,7 @@ def home_view(request):
 
 	template_file_name='home'
 	page_name='home'
-	# find the Page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
+	# find the page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 
@@ -103,41 +103,57 @@ def blog_view(request, slug_name, author_name):
 
 	template_file_name='blogs'
 	page_name='blogs'
-	# find the Page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
+	# find the page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 def event_view(request, slug_name, author_name):
 	#find the required blog via its slug 'slug_name'
 
 	if not slug_name is None:
-		events = Event.objects.all().filter(slug=slug_name).order_by('-starting_date')
+		events = Event.objects.all().filter(slug=slug_name).order_by('starting_date')
 		author_view = False
 		event_view = True
 		bauthor = None
 	else:
 		bauthor = User.objects.all().filter(username=author_name)[0]
-		events = Event.objects.all().filter(author=bauthor).order_by('-starting_date')
+		events = Event.objects.all().filter(author=bauthor).order_by('starting_date')
 		author_view = True
 		event_view = False
 
 	bloggers=[]
-	extra_context = {'bloggers':bloggers, 'events':events, 'event_view':event_view, 'author_view':author_view, 'bauthor':bauthor}
+	events_paginator = paginate(request,events)
+
+	extra_context = {'bloggers':bloggers, 'events':events_paginator, 'event_view':event_view, 'author_view':author_view, 'bauthor':bauthor}
 
 	template_file_name='events'
 	page_name='events'
-	# find the Page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
+	# find the page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 
 def page_view(request, page_name):
 	blogs = Blog.objects.all().order_by('-published_date')
-	events = Event.objects.all().order_by('-starting_date')
+
+	enddate_cutoff = datetime.date.today().isoformat()
+	events = Event.objects.all().order_by('starting_date').filter(ending_date__gte = enddate_cutoff)
+	past_events = Event.objects.all().order_by('-starting_date').filter(ending_date__lte = enddate_cutoff)
+
 	bloggers = latest_bloggers(blogs)
 
 	#paginate the blogs homepage
 	blogs_paginator = paginate(request,blogs)
 
-	extra_context = {'bloggers':bloggers, 'blogs':blogs_paginator, 'events':events}
+	#paginate the events homepage
+	events_paginator = paginate(request,events)
+	past_events_paginator = paginate(request,past_events)
+	past_events_flag = ( len(past_events) > 0)	
+	previous_events_flag = False
+
+	if request.GET.get('previous_events',None) == 'y':
+		events_paginator = past_events_paginator
+		previous_events_flag = True
+
+	extra_context = {'bloggers':bloggers, 'blogs':blogs_paginator, 'events':events_paginator ,'past_events_available':past_events_flag, 'showing_previous_events': previous_events_flag}
 
 	#decide which template file to use based on page name
 	# ie - this view currently handles - home , blogs, and events top level pages
