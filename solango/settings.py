@@ -27,7 +27,9 @@ SOLR_DEFAULT_OPERATOR = getattr(settings, "SOLR_DEFAULT_OPERATOR", "OR")
 ### Default Sorting criteria
 SEARCH_SORT_PARAMS = getattr(settings, "SEARCH_SORT_PARAMS", {
         # "field direction": "anchor" The anchor for display purposes
-        "score desc": "Relevance" 
+        "score desc": "Relevance" ,
+
+	 "date desc" : "Date"
 })
 
 ### Default Facet Settings

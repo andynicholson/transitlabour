@@ -365,3 +365,31 @@ outline: none;
 .content a {
 color:#0066FF;
 }
+
+.search_result {
+	margin-bottom:10px;
+}
+
+.search_result h1 {
+	background:#F6F6F6;
+	border:8px solid #F6F6F6;
+}
+
+.search_results h1 {
+	background:none;
+	border:none;
+	display:block;
+}
+
+.search_results .date {
+	background:none;
+	border:none;
+}
+
+.search_result .date {
+	background:#F6F6F6;
+}
+
+.pager {
+	margin-bottom:10px;
+}

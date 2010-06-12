@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from transitlabourapp.views import page_view, blog_view, home_view, event_view, platform_view
+from transitlabourapp.views import page_view, blog_view, home_view, event_view, platform_view, search_detail
 from transitlabourapp.feeds import LatestEntries
 feeds = {
   'blog': LatestEntries,
@@ -31,6 +31,8 @@ urlpatterns = patterns('',
     #specific event view
     (r'^events/(?P<slug_name>[-_\w]+)$', event_view, {'author_name':None}),
  
+    #search
+    (r'^search/', search_detail),
 
     #home page
     (r'^$', home_view),

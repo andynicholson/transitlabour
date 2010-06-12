@@ -11,6 +11,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
 
 from transitlabour.transitlabourapp.models import Page, Blog, Event, Platform
+from solango.views import SearchView
 import datetime
 
 OBJECTS_PER_PAGE = 4
@@ -163,6 +164,16 @@ def page_view(request, page_name):
 		#generic template to use for all other pages
 		template_file_name='about'
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
+
+def search_detail(request):
+        solango_searchview = SearchView(template_name="transitlabourapp/search.html")
+	blogs = Blog.objects.all().order_by('-published_date')
+	bloggers = latest_bloggers(blogs)
+	object = Page.objects.all().filter(slug='search')[0]
+
+        return solango_searchview.main(request, extra_context = {"bloggers":bloggers, "object":object})
+
+
 
 def latest_bloggers(blogs):
         bloggers = []
