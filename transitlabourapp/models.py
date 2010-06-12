@@ -79,6 +79,7 @@ class Blog(models.Model):
     sticky = models.BooleanField(verbose_name='Sticky on top of user blog')
     platform = models.ManyToManyField(Platform)
     promoted_platform = models.BooleanField(verbose_name='Promoted to platform home page')
+    image_credit = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u'%s' % (self.header)
@@ -97,7 +98,7 @@ class Blog(models.Model):
 
     def blog_header_image_css_padding(self):
 	if not self.background_image is None and not self.background_image.name.strip() == '':
-		return self.background_image.height-72
+		return self.background_image.height-82
 	else:
 		return 300
 
@@ -109,7 +110,7 @@ class Blog(models.Model):
 
     def blog_header_smaller_image_css_padding(self):
 	if not self.background_image is None and not self.background_image.name.strip() == '':
-		return self.background_image.height-72
+		return self.background_image.height-82
 	else:
 		return 160
 
