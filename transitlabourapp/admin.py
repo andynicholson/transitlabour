@@ -42,13 +42,13 @@ class BlogAdmin(admin.ModelAdmin):
         return super(BlogAdmin, self).formfield_for_dbfield(db_field, **kwargs)
    def response_change(self, request, obj):
         if not request.POST.has_key('_addanother') and not request.POST.has_key('_continue') and not request.POST.has_key('_saveasnew'):
-                return HttpResponseRedirect("/blogs/%s" % obj.get_absolute_url())
+                return HttpResponseRedirect("%s" % obj.get_absolute_url())
         else:
                 return super(BlogAdmin,self).response_change(request,obj)
 
    def response_add(self, request, obj):
         if not request.POST.has_key('_addanother') and not request.POST.has_key('_continue'):
-                return HttpResponseRedirect("/blogs/%s" % obj.get_absolute_url())
+                return HttpResponseRedirect("%s" % obj.get_absolute_url())
         else:
                 return super(BlogAdmin,self).response_add(request,obj)
 
