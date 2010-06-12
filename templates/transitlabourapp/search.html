@@ -1,0 +1,146 @@
+{% extends 'transitlabourapp/about.html' %}
+
+{% block body %}
+<body>
+
+<!--
+So that the css control is more granular and flexible 
+please have the container_12 class have a class for 
+the section (i.e. blogs) and for the page (i.e. whatever 
+the blog post title is.).
+-->
+
+<div class="container_12 search">
+
+ {% include 'transitlabourapp/menus.html' %}
+
+<div class="grid_12 alpha content">
+    
+	<div class="grid_9 alpha left">
+
+<!--
+Each language should only be displayed if there are blog posts in that language.
+
+		<div class="grid_3 alpha languages-header"><h1><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></h1></div>
+-->
+
+	    <div class="grid_9 alpha omega page-title">
+		    <h1 class="title">Search</h1>
+	    </div>
+
+		    <div class="grid_9 alpha omega list">    
+	    		<div class="grid_9 alpha omega teaser">
+				<span class="pad">
+<form action="." method="get"><input name="q" type="text" value="{{form.data.q}}"><input class="search_submit" value="Search again" type="submit"></form>
+</span>
+				</div>
+
+	</div>
+	<!-- end .grid_9 list-->
+
+
+		    <div class="grid_9 alpha omega list">
+		    	<h1 class="title">Search results for '{{form.data.q}}'</h1>
+                </div>
+
+
+ 		{% if form.data.q and not paginator.results.documents %}
+                No results found for <em>{{form.data.q}}</em>. Please modify your search.
+                {% else %}
+
+                {% for doc in paginator.results.documents %}
+                        {{doc.render_html|safe}}
+                {% endfor %}
+
+                {% endif %}
+
+
+
+
+
+ {% if paginator.has_next %}
+<div class="grid_3 alpha pager">
+    <a href="/search?q={{form.data.q}}&page={{paginator.next_page_number}}">
+	<div class="grid_3 alpha omega previous_posts"> <span class="pad">More Results</span> </div>
+    </a>
+</div>
+{% endif %}
+
+ {% if paginator.has_previous %}
+
+<div class="grid_3 alpha pager">
+<a href="/search?q={{form.data.q}}&page={{paginator.previous_page_number}}">
+    <div class="grid_3 alpha omega previous_posts"> <span class="pad">Previous Results</span> </div>
+    </a> 
+
+</div>
+ {% endif %}
+
+ 
+    </div>
+	<!-- end .grid_9 left -->
+     
+    <div class="grid_3 omega right">
+    
+<!--
+The 'value' ("Enter your search here") of the search should disappear when the user 
+clicks to enter a search string. Unfortunately I don't 
+have net so I could not add that javascript myself - Andy 
+is it ok for you to add this in? normally I would add these 
+little bits of jscript in myself, unless it was a larger site 
+reliant on jscript.
+-->
+    
+	<div class="grid_3 alpha omega search_block">
+    	<form action="/search" > <input name="q" type="text" value="{{form.data.q}}" class="search_string"> 
+    </div>
+    
+    <div class="grid_3 alpha omega search_submit_block">
+        <input name="" type="submit" value="Search" class="search_submit"> 
+</form>
+	</div>
+	<!-- end .grid_3 search_block -->
+    
+<!--
+This is a list of the 15 latest blog posters. Each of 
+these link to a page that only display the blogs made 
+by that blogger. The template for that page should be 
+the same as this page, but with the page title being "Blogs: Bloggers Name
+-->
+
+
+    <div class="grid_3 alpha list"><span class="pad">
+	Transit Labour bloggers
+	</span></div>
+    
+   {% for blogger in bloggers %}
+   <a href="/blogs/author/{{blogger.username}}">
+   <div class="grid_3 alpha blog">
+   <span class="name">{{blogger.first_name}} {{blogger.last_name}}</span>
+   </div>
+   </a>
+   {% endfor %}
+
+    <a href="/blogs">
+	<div class="grid_3 alpha omega all_bloggers"><div class="view_all">View all blog posts</div>
+</div>
+</a>
+
+    
+	</div>
+	<!-- end .grid_3 search_block -->
+    
+	</div>
+
+  <div class="clear"></div>
+  	<br/>
+	{% include 'transitlabourapp/footer.html' %}
+
+  <div class="clear"></div>
+
+    </div>
+	<!-- end .container_12 home -->
+
+</body>
+</html>
+{% endblock %}
