@@ -116,18 +116,24 @@
 
     </div>
 	<br/>
+
+<div class="grid_3 alpha">
 {% if lblogs.has_next %}
     <a href="?page={{lblogs.next_page_number }}">
 	<div class="grid_3 alpha omega previous_posts"> <span class="pad">Older posts</span> </div>
     </a>
  
 {% endif %}
+</div>
+
+<div class="grid_3 omega">
 
  {% if lblogs.has_previous %}
 <a href="?page={{lblogs.prev_page_number}}">
     <div class="grid_3 alpha omega previous_posts"> <span class="pad">Newer posts</span> </div>
     </a> 
  {% endif %}
+</div>
   
   <!-- end .grid_12 bottom -->
   <div class="clear"></div>
