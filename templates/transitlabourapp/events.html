@@ -58,7 +58,7 @@ The five latest events posts go here.
 			</div>  
 			
 			<br/>
-				{% if user.is_authenticated %} 
+				{% if is_owner %} 
 					<div class="grid_3 omega"><a href="/admin/transitlabourapp/event/{{event.id}}">Edit Event</a></div>
 				{% endif %}             
 			{% else %}

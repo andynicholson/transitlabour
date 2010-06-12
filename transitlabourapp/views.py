@@ -16,6 +16,14 @@ import datetime
 
 OBJECTS_PER_PAGE = 4
 
+def is_owner_of(request, obj):
+
+	if request.user.is_superuser:
+		return True
+	if request.user.is_authenticated and obj.author == request.user:
+		return True
+	return False
+
 def paginate(request,list,pagename='page'):
 	paginator = Paginator(list, OBJECTS_PER_PAGE) # Show 2 events per page
         # Make sure page request is an int. If not, deliver first page.
@@ -57,28 +65,28 @@ def platform_view(request, platform_name):
 
 def home_view(request):
 	#find the required blog via its slug 'slug_name'
+	template_file_name='home'
+	page_name='home'
 
 	blogs = Blog.objects.all().filter(promoted=True).order_by('-published_date')[:2]
         lblogs = Blog.objects.all().filter(promoted=False).order_by('-published_date')
 	today = datetime.datetime.today()
 	events = Event.objects.all().filter(ending_date__gt=today).order_by('starting_date')[:5]
 
-	bloggers = latest_bloggers(blogs)
-
 	#paginate results
 	blog_paginator = paginate(request,lblogs)
 
-	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':blog_paginator, 'events':events , 'homepage':True}
+	hp = Page.objects.filter(slug=page_name)
+	extra_context = {'pblogs':blogs, 'lblogs':blog_paginator, 'events':events , 'homepage':True, 'is_page_owner': is_owner_of(request,hp[0]) }
 
-	template_file_name='home'
-	page_name='home'
 	# find the page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
-	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
+	return object_detail( request, queryset = hp, slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 
 def blog_view(request, slug_name, author_name):
 	# note - this is currently only used for a specfic blog view and author view - not the front page of the "blogs" section of the site
 	# check urls.py carefully
+	is_owner = False
 
 	#find the required blog via its slug 'slug_name'
 	if not slug_name is None:
@@ -87,6 +95,7 @@ def blog_view(request, slug_name, author_name):
 		blog_view = True
 		bauthor = None
 		sticky_blogs = None
+		is_owner = is_owner_of(request, blogs[0])
 	else:
 		#no slugname - author view
 		bauthor = User.objects.all().filter(username=author_name)[0]
@@ -94,13 +103,12 @@ def blog_view(request, slug_name, author_name):
 		sticky_blogs = Blog.objects.all().filter(author=bauthor, sticky=True).order_by('-published_date')
 		author_view = True
 		blog_view = False
-
-	bloggers = latest_bloggers(blogs)
-
+	#get list of latest bloggers
+	bloggers = latest_bloggers(Blog.objects.all().order_by('-published_date'))
 	#paginate results
 	blog_paginator = paginate(request,blogs)
 
-	extra_context = {'bloggers':bloggers, 'blogs':blog_paginator, 'blog_view':blog_view, 'author_view':author_view, 'bauthor':bauthor, 'sticky_blogs':sticky_blogs}
+	extra_context = {'bloggers':bloggers, 'blogs':blog_paginator, 'blog_view':blog_view, 'author_view':author_view, 'bauthor':bauthor, 'sticky_blogs':sticky_blogs, 'is_owner':is_owner}
 
 	template_file_name='blogs'
 	page_name='blogs'
@@ -109,12 +117,13 @@ def blog_view(request, slug_name, author_name):
 
 def event_view(request, slug_name, author_name):
 	#find the required blog via its slug 'slug_name'
-
+	is_owner = False
 	if not slug_name is None:
 		events = Event.objects.all().filter(slug=slug_name).order_by('starting_date')
 		author_view = False
 		event_view = True
 		bauthor = None
+		is_owner = is_owner_of(request,events[0])
 	else:
 		bauthor = User.objects.all().filter(username=author_name)[0]
 		events = Event.objects.all().filter(author=bauthor).order_by('starting_date')
@@ -124,7 +133,7 @@ def event_view(request, slug_name, author_name):
 	bloggers=[]
 	events_paginator = paginate(request,events)
 
-	extra_context = {'bloggers':bloggers, 'events':events_paginator, 'event_view':event_view, 'author_view':author_view, 'bauthor':bauthor}
+	extra_context = {'bloggers':bloggers, 'events':events_paginator, 'event_view':event_view, 'author_view':author_view, 'bauthor':bauthor, 'is_owner':is_owner}
 
 	template_file_name='events'
 	page_name='events'
@@ -154,7 +163,11 @@ def page_view(request, page_name):
 		events_paginator = past_events_paginator
 		previous_events_flag = True
 
-	extra_context = {'bloggers':bloggers, 'blogs':blogs_paginator, 'events':events_paginator ,'past_events_available':past_events_flag, 'showing_previous_events': previous_events_flag}
+
+	page_obj = Page.objects.filter(slug=page_name)
+	is_owner = is_owner_of(request, page_obj[0]) 
+
+	extra_context = {'bloggers':bloggers, 'blogs':blogs_paginator, 'events':events_paginator ,'past_events_available':past_events_flag, 'showing_previous_events': previous_events_flag, 'is_page_owner':is_owner}
 
 	#decide which template file to use based on page name
 	# ie - this view currently handles - home , blogs, and events top level pages
@@ -163,7 +176,7 @@ def page_view(request, page_name):
 	else:
 		#generic template to use for all other pages
 		template_file_name='about'
-	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
+	return object_detail( request, queryset = page_obj , slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
 def search_detail(request):
         solango_searchview = SearchView(template_name="transitlabourapp/search.html")

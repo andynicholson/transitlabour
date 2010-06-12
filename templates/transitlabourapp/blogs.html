@@ -58,7 +58,7 @@ The five latest blog posts go here.
 			</div>  
 			
 			<br/>
-				{% if user.is_authenticated %} 
+				{% if is_owner %} 
 					<div class="grid_3 omega"><a href="/admin/transitlabourapp/blog/{{blog.id}}">Edit Blog</a></div>
 				{% endif %}             
 			{% else %}
@@ -87,7 +87,7 @@ The five latest blog posts go here.
 			</div>  
 			
 			<br/>
-				{% if user.is_authenticated %} 
+				{% if is_owner %} 
 					<div class="grid_3 omega"><a href="/admin/transitlabourapp/blog/{{blog.id}}">Edit Blog</a></div>
 				{% endif %}             
 			{% else %}

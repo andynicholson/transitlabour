@@ -10,6 +10,16 @@ class PageAdmin(admin.ModelAdmin):
    list_filter = ('header', )
    prepopulated_fields = {"slug": ("header",)}
 
+   def queryset(self, request):
+        qs = super(PageAdmin, self).queryset(request)
+
+        # If super-user, show all comments
+        if request.user.is_superuser:
+            return qs
+        
+        return qs.filter(author=request.user)
+
+
    def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'teaser_text' or db_field.name=='body':
             return db_field.formfield(widget=TinyMCE(
@@ -33,6 +43,16 @@ class BlogAdmin(admin.ModelAdmin):
    search_fields = ('header',)
    list_filter = ('header', )
    prepopulated_fields = {"slug": ("header",)}
+  
+   def queryset(self, request):
+        qs = super(BlogAdmin, self).queryset(request)
+
+        # If super-user, show all comments
+        if request.user.is_superuser:
+            return qs
+        
+        return qs.filter(author=request.user)
+
 
    def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'teaser_text' or db_field.name=='body':
@@ -57,6 +77,16 @@ class EventAdmin(admin.ModelAdmin):
    search_fields = ('header',)
    list_filter = ('header', )
    prepopulated_fields = {"slug": ("header",)}
+  
+   def queryset(self, request):
+        qs = super(EventAdmin, self).queryset(request)
+
+        # If super-user, show all comments
+        if request.user.is_superuser:
+            return qs
+        
+        return qs.filter(author=request.user)
+
 
    def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'teaser_text' or db_field.name=='body':

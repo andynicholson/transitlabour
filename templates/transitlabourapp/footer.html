@@ -8,7 +8,7 @@ The text for the license block will need to be editable
 <h2>License</h2>
     Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 3.0 License
 	<br>
-    {% if user.is_authenticated %} <a href="/admin/transitlabourapp/page/{{object.id}}">Edit this page</a> | <a href="/admin/transitlabourapp/page/add">Publish a Page</a> {% endif %}
+    {% if is_page_owner %} <a href="/admin/transitlabourapp/page/{{object.id}}">Edit this page</a> | <a href="/admin/transitlabourapp/page/add">Publish a Page</a> {% endif %}
 
     </div>
 

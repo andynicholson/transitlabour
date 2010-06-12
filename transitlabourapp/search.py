@@ -6,7 +6,7 @@ class PageSearchDocument(solango.SearchDocument):
     header = solango.fields.CharField(copy=True)
     teaser_text = solango.fields.TextField(copy=True)
     body = solango.fields.TextField(copy=True)
-    author = solango.fields.CharField()
+    author = solango.fields.CharField(copy=True)
     slug = solango.fields.CharField(copy=True)
 
     class Media:
@@ -23,7 +23,7 @@ class BlogSearchDocument(solango.SearchDocument):
     header = solango.fields.CharField(copy=True)
     teaser_text = solango.fields.TextField(copy=True)
     body = solango.fields.TextField(copy=True)
-    author = solango.fields.CharField()
+    author = solango.fields.CharField(copy=True)
     slug = solango.fields.CharField(copy=True)
 
     class Media:
