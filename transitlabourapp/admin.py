@@ -53,6 +53,12 @@ class BlogAdmin(admin.ModelAdmin):
         
         return qs.filter(author=request.user)
 
+   def get_form(self, request, obj=None, **kwargs):
+	self.exclude = []	
+	if not request.user.is_superuser:
+		self.exclude.append('promoted')
+		self.exclude.append('promoted_platform')
+	return super(BlogAdmin, self).get_form(request, obj, **kwargs)
 
    def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'teaser_text' or db_field.name=='body':

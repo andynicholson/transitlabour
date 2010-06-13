@@ -74,11 +74,11 @@ class Blog(models.Model):
     published_date=models.DateTimeField(verbose_name='Date published', auto_now_add=True,blank=True,null=True)
     edited_date = models.DateTimeField(verbose_name='Date edited', auto_now=True,blank=True,null=True)
     slug = models.SlugField()
-    promoted = models.BooleanField(verbose_name='Promoted to home page')
+    promoted = models.BooleanField(verbose_name='Sticky on top of home page')
     author = models.ForeignKey(User, related_name='userblogs')
     sticky = models.BooleanField(verbose_name='Sticky on top of user blog')
     platform = models.ManyToManyField(Platform)
-    promoted_platform = models.BooleanField(verbose_name='Promoted to platform home page')
+    promoted_platform = models.BooleanField(verbose_name='Sticky on top of platform home page')
     image_credit = models.CharField(max_length=100)
 
     def __unicode__(self):
