@@ -132,7 +132,8 @@ def event_view(request, slug_name, author_name):
 		author_view = True
 		event_view = False
 
-	bloggers=[]
+	blogs = Blog.objects.all().order_by('-published_date')
+	bloggers=latest_bloggers(blogs)
 	events_paginator = paginate(request,events)
 
 	extra_context = {'bloggers':bloggers, 'events':events_paginator, 'event_view':event_view, 'author_view':author_view, 'bauthor':bauthor, 'is_owner':is_owner}
