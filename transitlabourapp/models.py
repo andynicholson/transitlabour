@@ -68,8 +68,8 @@ class Platform(models.Model):
 class Blog(models.Model):
     header=models.CharField(max_length=50)
     #page text attributes
-    teaser_text=models.TextField()
-    body=models.TextField(blank=True)
+    teaser_text=models.TextField(verbose_name='Teaser text (will appear as first paragraph in full view)')
+    body=models.TextField(blank=True, verbose_name='Body text (please do not re-insert teaser text here)')
     background_image = models.ImageField(upload_to='bgimg/%Y/%m/%d', blank=True)
     published_date=models.DateTimeField(verbose_name='Date published', auto_now_add=True,blank=True,null=True)
     edited_date = models.DateTimeField(verbose_name='Date edited', auto_now=True,blank=True,null=True)

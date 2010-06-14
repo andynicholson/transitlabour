@@ -42,6 +42,9 @@ def paginate(request,list,pagename='page'):
 
 def platform_view(request, platform_name):
 	#find the required blog via its slug 'slug_name'
+	template_file_name='home'
+	page_name=platform_name
+
 	platform = Platform.objects.all().filter(name=platform_name)
 
 	blogs = Blog.objects.all().filter(promoted_platform=True, platform=platform).order_by('-published_date')[:2]
@@ -54,11 +57,10 @@ def platform_view(request, platform_name):
 
    	#paginate results
         blog_paginator = paginate(request,lblogs)
+	page_set = Page.objects.filter(slug=page_name)
 
-	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':blog_paginator, 'events':events , 'platformpage':True}
+	extra_context = {'bloggers':bloggers, 'pblogs':blogs, 'lblogs':blog_paginator, 'events':events , 'platformpage':True, 'is_page_owner': is_owner_of(request,page_set[0]) }
 
-	template_file_name='home'
-	page_name=platform_name
 	# find the page object which represents the actual page (not blogs within page) by its slug name 'page_name' , and the template
 	return object_detail( request, queryset = Page.objects.filter(slug=page_name), slug=page_name, template_name="transitlabourapp/%s.html"%template_file_name, extra_context=extra_context )
 
@@ -170,8 +172,8 @@ def page_view(request, page_name):
 	extra_context = {'bloggers':bloggers, 'blogs':blogs_paginator, 'events':events_paginator ,'past_events_available':past_events_flag, 'showing_previous_events': previous_events_flag, 'is_page_owner':is_owner}
 
 	#decide which template file to use based on page name
-	# ie - this view currently handles - home , blogs, and events top level pages
-	if page_name == 'home' or page_name=='blogs' or page_name=='events':
+	# ie - this view currently handles blogs, and events top level pages, plus misc. static pages
+	if page_name=='blogs' or page_name=='events':
 		template_file_name=page_name
 	else:
 		#generic template to use for all other pages
