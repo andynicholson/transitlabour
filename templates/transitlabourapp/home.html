@@ -68,25 +68,25 @@
       </div>
       </a> 
 
+      <div class="grid_3 alpha omega view_all_block list">
+        <div class="pad">Transit-labour events</div>
+      </div>
+
+
       {% for event in events %}
 
       <a href="/events/{{event.slug}}">
-      <div class="grid_3 alpha omega blog"> <span class="date">{{event.starting_date|date:"F d, Y"}}</span> <span class="teaser">{{event.header}}</span></div>
+      <div class="grid_3 alpha omega blog"> <span class="date">{{event.starting_date|date:"F d, Y"}}</span> <span class="name teaser">{{event.header}}</span></div>
       </a> 
 
      {% endfor %} 
       
-      <a href="/blogs/">
+      <a href="/events/">
       <div class="grid_3 alpha omega view_all_block">
-        <div class="view_all">View all blog posts</div>
+        <div class="view_all">View all events</div>
       </div>
       </a> 
 
- <a href="/feeds/blog">
-        <div class="grid_3 alpha omega all_bloggers"><div class="view_all">Blog RSS</div></div>
-    </a>
-
-      
       </div>
     <!-- end .grid_3 right -->
     
@@ -99,7 +99,7 @@
    
    	{% for lb in lblogs.object_list %}
 	
-    <div class="grid_6 alpha">
+    <div class="grid_6 alpha small_news">
       <div class="grid_6 alpha omega news_{{lb.slug}}">
       <div class="grid_6 alpha omega">
         <h1 class="title">{{lb.header}}</h1>
@@ -125,6 +125,7 @@
     </a>
  
 {% endif %}
+&nbsp;
 </div>
 
 <div class="grid_3 omega">

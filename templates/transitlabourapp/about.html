@@ -24,8 +24,9 @@ background:url({{object.platform_header_image_url}}) no-repeat;
    {% for lb in lblogs.object_list %}
 	<style>
 	.bottom .news_{{lb.slug}} {
-	padding-bottom:{{lb.blog_header_smaller_image_css_padding}}px;
-	background: url({{lb.blog_header_smaller_image_url}}); }
+	/* padding-bottom:{{lb.blog_header_smaller_image_css_padding}}px; */
+	padding-bottom:160px;
+	background: url({{lb.blog_header_smaller_image_url}}) center; }
 
 	</style>
    {% endfor %}
