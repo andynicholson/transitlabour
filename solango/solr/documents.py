@@ -143,6 +143,10 @@ class BaseSearchDocument(object):
             #make it into a dict.
             self._model = arg
             self.data_dict = model_to_dict(arg)
+    	    try:
+                self._model._default_manager.get(pk=self._model.pk)
+            except self._model.__class__.DoesNotExist:
+                self._is_deleted = True
         elif isinstance(arg, dict):
             self.data_dict = arg
         elif isinstance(arg, (tuple, list)):
@@ -166,7 +170,7 @@ class BaseSearchDocument(object):
         
         if not self.pk_field:
             raise NoPrimaryKeyFieldException('Search Document needs a Primary Key Field')
-        
+
         if self._model:
             self._transform_field(self.pk_field)
             self.boost = self.get_boost(self._model)
@@ -288,7 +292,12 @@ class BaseSearchDocument(object):
         if self.data_dict:
             model = get_model_from_key(self.data_dict['model'])
             id = self.data_dict['id'].split(settings.SEARCH_SEPARATOR)[2]
-            
+            try:
+                model._default_manager.get(pk=id)
+            except:
+                self._is_deleted = True
+		return None
+
             return model.objects.get(pk=id)
         elif self._model:
             return self._model
