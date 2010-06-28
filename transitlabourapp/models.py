@@ -142,4 +142,15 @@ class Event(models.Model):
     def is_editable_page(self):
 	return True
 
+    def event_header_image_url(self):
+        if not self.background_image is None and not self.background_image.name.strip() == '':
+                return "/custom/%s" % self.background_image
+        else:
+                return "/custom/img/transitlabour-imagehero.gif"
+
+    def event_header_image_css_padding(self):
+        if not self.background_image is None and not self.background_image.name.strip() == '':
+                return self.background_image.height-82
+        else:
+                return 300
 

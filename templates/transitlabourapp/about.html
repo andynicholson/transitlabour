@@ -56,6 +56,14 @@ background:url({{object.platform_header_image_url}}) no-repeat;
 	</style>
    {% endfor %}
 
+{% for event in events.object_list %}
+	<style>
+	.story_title_{{event.slug}} { 
+			padding-bottom:{{event.event_header_image_css_padding}}px;
+			background:url({{event.event_header_image_url}}); }
+	</style>
+   {% endfor %}
+
 
 
 <!--

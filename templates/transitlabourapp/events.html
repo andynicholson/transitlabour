@@ -40,15 +40,15 @@ Each language should only be displayed if there are blog posts in that language.
 The five latest events posts go here.
 -->
 	{% for event in events.object_list %}
-		    <div class="grid_9 alpha omega title">
+		    <div class="grid_9 alpha omega title story_title_{{event.slug}}">
 		    	<h1 class="title">{{event.header}}</h1>
-		    </div>
 		    <div class="grid_9 alpha omega title">
 		    	<h1 class="bloginfo"><span class="date">From: {{event.starting_date|date:"F d, Y"}}</span>
 					     <span class="date">To: {{event.ending_date|date:"F d, Y"}}</span>
 			</h1>
 		    </div>
-    
+		    </div>
+
 	    		<div class="grid_9 alpha omega teaser">
 				<span class="pad">{{event.teaser_text|safe}}</span>
 			</div>
