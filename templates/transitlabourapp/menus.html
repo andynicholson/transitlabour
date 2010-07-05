@@ -2,13 +2,16 @@
  
  <div class="grid_12 alpha omega user_bar">
 	{% if user.is_authenticated %} 
-	<div class="grid_9 alpha ">Welcome {{user.first_name}} {{user.last_name}} ({{user.username}}). <a href="/profiles/edit">Your Profile</a></div>
+	<div class="grid_9 alpha ">Welcome {{user.first_name}} {{user.last_name}} ({{user.username}}). <a href="/profiles/edit">Your Profile</a></div> 
 	{%else%}
 	<div class="grid_9 alpha ">&nbsp;</div>
 	{% endif %}
 	<!-- <div class="grid_3 languages"><a href="#" class="active">English</a> / <a href="#">普通話</a> / <a href="#">বাংলা</a></div> l  -->
 	{% if user.is_authenticated %} 
-		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/admin/transitlabourapp/event/add">Event</a> / <a href="/accounts/logout">Sign out</a></div>
+		<div class="grid_3 omega signup"><a href="/admin/transitlabourapp/blog/add">Publish Blog</a> / <a href="/admin/transitlabourapp/event/add">Event</a> / <a href="/accounts/logout">Sign out</a>
+
+		<a href="/admin/filebrowser/browse/">Upload Media</a>
+		</div> 
 	{% else %}
 		<div class="grid_3 omega signup"><a href="/accounts/login">Login</a> / <a href="/accounts/register">Signup</a></div>
 	{% endif %}
