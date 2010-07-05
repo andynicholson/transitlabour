@@ -15,6 +15,11 @@ urlpatterns = patterns('',
     # to INSTALLED_APPS to enable admin documentation:
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    # tinymce
+     (r'^tinymce/', include('tinymce.urls')),
+
+    #django-filebrowser
+    (r'^admin/filebrowser/', include('filebrowser.urls')),
     #admin
     (r'^admin/', include(admin.site.urls)),
     #static content, CSS, JS, images
