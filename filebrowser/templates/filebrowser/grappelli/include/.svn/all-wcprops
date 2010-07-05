@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include
+END
+_response.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/_response.html
+END
+tableheader.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/tableheader.html
+END
+toolbar.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/toolbar.html
+END
+paginator.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/paginator.html
+END
+filter.html
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/filter.html
+END
+search.html
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/search.html
+END
+filelisting.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/filelisting.html
+END
+breadcrumbs.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/555/branches/filebrowser3-no-grappelli/templates/filebrowser/grappelli/include/breadcrumbs.html
+END

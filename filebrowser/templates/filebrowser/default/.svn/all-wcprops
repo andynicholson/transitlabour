@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/559/branches/filebrowser3-no-grappelli/templates/filebrowser/default
+END
+makedir.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/559/branches/filebrowser3-no-grappelli/templates/filebrowser/default/makedir.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/559/branches/filebrowser3-no-grappelli/templates/filebrowser/default/index.html
+END
+rename.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/559/branches/filebrowser3-no-grappelli/templates/filebrowser/default/rename.html
+END
+versions.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/559/branches/filebrowser3-no-grappelli/templates/filebrowser/default/versions.html
+END

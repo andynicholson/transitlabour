@@ -1,0 +1,64 @@
+9
+
+dir
+595
+http://django-filebrowser.googlecode.com/svn/branches/filebrowser3-no-grappelli/locale
+http://django-filebrowser.googlecode.com/svn
+
+
+
+2010-01-22T16:44:09.364346Z
+549
+matjaz.crnko
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b1eb0509-c838-0410-b15c-e5ce2c1b85ca
+
+zh_CN
+dir
+
+sr_Latn
+dir
+
+ca
+dir
+
+sr
+dir
+
+ru
+dir
+
+es
+dir
+
+fr
+dir
+
+de
+dir
+
+sl_SI
+dir
+
+nl
+dir
+
+zh_TW
+dir
+
+it
+dir
+

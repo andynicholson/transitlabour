@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/547/branches/filebrowser3-no-grappelli/upload_frontends/uploadify
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/547/branches/filebrowser3-no-grappelli/upload_frontends/uploadify/views.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/547/branches/filebrowser3-no-grappelli/upload_frontends/uploadify/__init__.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/547/branches/filebrowser3-no-grappelli/upload_frontends/uploadify/urls.py
+END
+decorators.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/547/branches/filebrowser3-no-grappelli/upload_frontends/uploadify/decorators.py
+END
