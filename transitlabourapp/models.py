@@ -132,6 +132,8 @@ class Event(models.Model):
     edited_date = models.DateTimeField(verbose_name='Date edited', auto_now=True,blank=True,null=True)
     slug = models.SlugField()
     author = models.ForeignKey(User, related_name='userevents')
+    image_credit = models.CharField(max_length=100)
+
 
     def __unicode__(self):
         return u'%s' % (self.header)
