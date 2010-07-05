@@ -10,10 +10,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'
-DATABASE_NAME = ''
-DATABASE_USER = ''
+DATABASE_NAME = 'transitlabour_django'
+DATABASE_USER = 'andycat'
 DATABASE_PASSWORD = ''
-DATABASE_HOST = ''
+DATABASE_HOST = 'mysql.transitlabour.asia'
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
@@ -21,7 +21,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Australia/Sydney'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -35,7 +35,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/andycat_/transitlabour.asia/transitlabour/media'
+MEDIA_ROOT = '/home/andycat_/transitlabour.asia/transitlabour/templates/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -78,16 +78,31 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.syndication',
     'transitlabour.transitlabourapp',
     'tinymce',
     'registration',
+    'profiles',
+    'solango',
+    'filebrowser',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
 TINYMCE_JS_URL = '/custom/js/tiny_mce/tiny_mce.js'
-TINYMCE_JS_ROOT = '/home/andycat_/transitlabour.asia/transitlabour/templates/media/js/tiny_mce'
-TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", 'relative_urls': False}
+TINYMCE_JS_ROOT = '/home/andycat_/transitlabour.asia/transitlabour/templates/media/js/tiny_mce/'
+TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", 'relative_urls': False, 'plugins': "table,paste,searchreplace", 'theme_advanced_buttons3_add' : "search,replace, paste, table",}
+TINYMCE_COMPRESSOR = False
+TINYMCE_FILEBROWSER = True
+
+FILEBROWSER_URL_TINYMCE = '/custom/js/tiny_mce/'
+FILEBROWSER_PATH_TINYMCE = TINYMCE_JS_ROOT
+
+FILEBROWSER_URL_FILEBROWSER_MEDIA = "/custom/filebrowser/"
 
 LOGIN_URL = "/admin/"
-LOGIN_REDIRECT_URL = "http://transitlabour/"
+LOGIN_REDIRECT_URL = "http://transitlabour.asia/"
+
+DEFAULT_FROM_EMAIL='info@transitlabour.asia'
+AUTH_PROFILE_MODULE = "transitlabourapp.UserProfile"
+
