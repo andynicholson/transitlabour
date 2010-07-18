@@ -396,5 +396,7 @@ color:#0066FF;
 .image-credit {
  	margin-top:-40px;
  	color:#fff;
+	font-style:italic;
+	text-align:right;
  }
 
