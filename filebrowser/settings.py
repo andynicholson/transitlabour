@@ -43,9 +43,9 @@ PATH_TINYMCE = getattr(settings, "FILEBROWSER_PATH_TINYMCE", DEFAULT_PATH_TINYMC
 EXTENSIONS = getattr(settings, "FILEBROWSER_EXTENSIONS", {
     'Folder': [''],
     'Image': ['.jpg','.jpeg','.gif','.png','.tif','.tiff'],
-    'Video': ['.mov','.wmv','.mpeg','.mpg','.avi','.rm'],
+    'Video': ['.mov','.wmv','.mpeg','.mpg','.avi','.rm', '.ogg','.ogv'],
     'Document': ['.pdf','.doc','.rtf','.txt','.xls','.csv'],
-    'Audio': ['.mp3','.mp4','.wav','.aiff','.midi','.m4p'],
+    'Audio': ['.mp3','.mp4','.wav','.aiff','.midi','.m4p', '.ogg'],
     'Code': ['.html','.py','.js','.css']
 })
 
@@ -97,7 +97,7 @@ for exts in EXTENSIONS.values():
     EXTENSION_LIST += exts
 EXCLUDE = getattr(settings, 'FILEBROWSER_EXCLUDE', (r'_(%(exts)s)_.*_q\d{1,3}\.(%(exts)s)' % {'exts': ('|'.join(EXTENSION_LIST))},))
 # Max. Upload Size in Bytes.
-MAX_UPLOAD_SIZE = getattr(settings, "FILEBROWSER_MAX_UPLOAD_SIZE", 10485760)
+MAX_UPLOAD_SIZE = getattr(settings, "FILEBROWSER_MAX_UPLOAD_SIZE", 52428800*6)
 # Convert Filename (replace spaces and convert to lowercase)
 CONVERT_FILENAME = getattr(settings, "FILEBROWSER_CONVERT_FILENAME", True)
 # Max. Entries per Page
