@@ -11,8 +11,8 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'
 DATABASE_NAME = 'transitlabour_django'
-DATABASE_USER = 'andycat'
-DATABASE_PASSWORD = 'andycat!!'
+DATABASE_USER = 'xyz'
+DATABASE_PASSWORD = 'xyz'
 DATABASE_HOST = 'mysql.transitlabour.asia'
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
