@@ -1,6 +1,6 @@
 # Django settings for transitlabour project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASE_ENGINE = 'mysql'
 DATABASE_NAME = 'transitlabour_django'
 DATABASE_USER = 'andycat'
-DATABASE_PASSWORD = ''
+DATABASE_PASSWORD = 'andycat!!'
 DATABASE_HOST = 'mysql.transitlabour.asia'
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -91,7 +91,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 TINYMCE_JS_URL = '/custom/js/tiny_mce/tiny_mce.js'
 TINYMCE_JS_ROOT = '/home/andycat_/transitlabour.asia/transitlabour/templates/media/js/tiny_mce/'
-TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", 'relative_urls': False, 'plugins': "table,paste,searchreplace", 'theme_advanced_buttons3_add' : "search,replace, paste, table",}
+TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", 'relative_urls': False, 'plugins': "table,paste,searchreplace,media", 'theme_advanced_buttons3_add' : "search,replace, paste, table, media", "extended_valid_elements" : "audio[src|controls]", }
 TINYMCE_COMPRESSOR = False
 TINYMCE_FILEBROWSER = True
 
