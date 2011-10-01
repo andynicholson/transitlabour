@@ -11,8 +11,8 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'
 DATABASE_NAME = 'transitlabour_django'
-DATABASE_USER = 'xyz'
-DATABASE_PASSWORD = 'xyz'
+DATABASE_USER = 'andycat'
+DATABASE_PASSWORD = 'abc123'
 DATABASE_HOST = 'mysql.transitlabour.asia'
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -48,7 +48,7 @@ MEDIA_URL = '/custom/'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'jdhd&kno0!c9+ywj1)2*a0g%^&cg_-!x)0cz_^&p02@r%u!te-'
+SECRET_KEY = 'dsjhdsj'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -61,6 +61,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
 )
 
 ROOT_URLCONF = 'transitlabour.urls'
@@ -106,3 +108,7 @@ LOGIN_REDIRECT_URL = "http://transitlabour.asia/"
 DEFAULT_FROM_EMAIL='info@transitlabour.asia'
 AUTH_PROFILE_MODULE = "transitlabourapp.UserProfile"
 
+#
+#
+RECAPTCHA_PUBLIC_KEY = '123'
+RECAPTCHA_PRIVATE_KEY = '456'
