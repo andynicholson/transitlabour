@@ -25,7 +25,8 @@ urlpatterns = patterns('',
     #static content, CSS, JS, images
     (r'^custom/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/andycat_/transitlabour.asia/transitlabour/templates/media'}),
     # the registration module
-    (r'^accounts/', include('registration.backends.default.urls')),
+    #(r'^accounts/', include('registration.backends.default.urls')),
+     (r'^accounts/', include('transitlabour_rego.urls')),
     #profiles
     (r'^profiles/', include('profiles.urls')),
 
